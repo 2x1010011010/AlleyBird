@@ -6,7 +6,6 @@ public class CoinSpawner : Pool
     [SerializeField] private Transform[] _spawnPoints;
     [SerializeField] private float _nextSpawnDelta;
     [SerializeField] private Vector3 _lastSpawn;
-    
 
     private void Start()
     {
@@ -20,7 +19,8 @@ public class CoinSpawner : Pool
             if (TryGetObject(out GameObject coin))
             {
                 int randomIndex = Random.Range(0, _spawnPoints.Length);
-                coin.transform.position = _spawnPoints[randomIndex].position;
+                float randomCoordinateX = Random.Range(-2, 2);
+                coin.transform.position = new Vector3 (randomCoordinateX, _spawnPoints[randomIndex].position.y, _spawnPoints[randomIndex].position.z);
                 _lastSpawn = _spawnPoints[randomIndex].position;
                 coin.SetActive(true);
             }
