@@ -11,6 +11,7 @@ public class GameEventHandler : MonoBehaviour
     [SerializeField] private GameOverScreen _gameoverScreen;
     [SerializeField] private CatSpawner _catSpawner;
     [SerializeField] private CoinSpawner _coinSpawner;
+    [SerializeField] private PlatformMover _platformMover;
 
     private void OnEnable()
     {
@@ -21,6 +22,7 @@ public class GameEventHandler : MonoBehaviour
         _mover.BirdFly += OnBirdFly;
         _groundChecker.BirdOnGround += OnBirdOnGround;
         _gameoverScreen.RestartButtonClick += OnRestartButtonClick;
+        _platformMover.PlatformMoved += OnPlatformMoved;
     }
 
     private void OnDisable()
@@ -32,6 +34,7 @@ public class GameEventHandler : MonoBehaviour
         _mover.BirdFly -= OnBirdFly;
         _groundChecker.BirdOnGround -= OnBirdOnGround;
         _gameoverScreen.RestartButtonClick -= OnRestartButtonClick;
+        _platformMover.PlatformMoved -= OnPlatformMoved;
     }
 
     private void Start()
@@ -85,5 +88,10 @@ public class GameEventHandler : MonoBehaviour
     private void OnPlatformCounterChanged()
     {
         _gameScreen.ShowPlatformsCounter(_bird.PlatformCounter);
+    }
+
+    private void OnPlatformMoved()
+    {
+        _catSpawner.Spawn();
     }
 }

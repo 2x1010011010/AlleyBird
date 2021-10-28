@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlatformMover : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class PlatformMover : MonoBehaviour
     [SerializeField] private float _distanceBehindCamera;
 
     private const float _distance = 2.5f;
+    public event UnityAction PlatformMoved;
 
     private void Update()
     {
@@ -19,6 +21,7 @@ public class PlatformMover : MonoBehaviour
             if (point.y < _distanceBehindCamera)
             {
                 _platforms[i].transform.position = new Vector3(_platforms[i].transform.position.x, _platforms[i].transform.position.y + _upMovement, _platforms[i].transform.position.z);
+                PlatformMoved?.Invoke();
             }
         }
     }

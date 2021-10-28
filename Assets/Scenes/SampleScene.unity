@@ -572,7 +572,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 23.5
+  m_fontSize: 24.05
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1090,6 +1090,7 @@ MonoBehaviour:
   _gameoverScreen: {fileID: 645822746}
   _catSpawner: {fileID: 1152747183}
   _coinSpawner: {fileID: 1247590886}
+  _platformMover: {fileID: 22960324}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -1525,7 +1526,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 23.5
+  m_fontSize: 24.05
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1675,7 +1676,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _container: {fileID: 653525694}
-  _capacity: 2
+  _capacity: 5
   _distanceBehindCamera: -0.25
   _template: {fileID: 8299569833181689566, guid: 3d0fffbfdd16ada4399c0bb813d715dd,
     type: 3}
@@ -2172,7 +2173,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 48.85
+  m_fontSize: 50.1
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2464,7 +2465,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 48.85
+  m_fontSize: 50.1
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2807,8 +2808,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.071518876, y: -0.0059372107}
-  m_Size: {x: 0.7271107, y: 0.505381}
+  m_Offset: {x: -0.04258384, y: -0.12252916}
+  m_Size: {x: 0.7113296, y: 0.2721981}
   m_Direction: 1
 --- !u!114 &1804221140
 MonoBehaviour:
