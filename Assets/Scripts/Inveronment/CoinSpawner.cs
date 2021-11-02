@@ -12,7 +12,7 @@ public class CoinSpawner : Pool
         Initialize(_template);
     }
 
-    private void Update()
+    public void Spawn()
     {
         if (_spawnPoints[0].position.y - _lastSpawn.y > _nextSpawnDelta)
         {

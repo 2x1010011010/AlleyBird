@@ -93,5 +93,6 @@ public class GameEventHandler : MonoBehaviour
     private void OnPlatformMoved()
     {
         _catSpawner.Spawn();
+        _coinSpawner.Spawn();
     }
 }
