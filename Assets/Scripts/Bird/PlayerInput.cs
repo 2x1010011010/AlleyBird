@@ -15,7 +15,7 @@ public class PlayerInput : MonoBehaviour
 
     private void Update()
     {
-        if (Time.timeScale == 1 && Input.GetMouseButtonDown(0))
+        if (Time.timeScale == 1 && Input.GetMouseButtonDown(0)) 
         {
             if (_groundCheck.IsGrounded)
             {

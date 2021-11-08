@@ -50,7 +50,7 @@ public class GameEventHandler : MonoBehaviour
     }
     private void OnBirdOnGround()
     {
-        if(Time.timeScale == 1)
+        if(Time.timeScale == 1) 
             _animator.PlayAnimation("Walk");
     }
 
