@@ -12,6 +12,10 @@ public class GameEventHandler : MonoBehaviour
     [SerializeField] private CatSpawner _catSpawner;
     [SerializeField] private CoinSpawner _coinSpawner;
     [SerializeField] private PlatformMover _platformMover;
+    [SerializeField] private HowToPlayScreen _howToPlay;
+
+    private int _totalCoins;
+    private int _platformsRecord;
 
     private void OnEnable()
     {
@@ -39,9 +43,21 @@ public class GameEventHandler : MonoBehaviour
 
     private void Start()
     {
+        _howToPlay.Close();
         _gameScreen.Close();
         _gameoverScreen.Close();
         _startScreen.Open();
+        
+        if (PlayerPrefs.HasKey("TotalCoins"))
+            _totalCoins = PlayerPrefs.GetInt("TotalCoins");
+        else
+            _totalCoins = 0;
+
+        if (PlayerPrefs.HasKey("PlatformsRecord"))
+            _platformsRecord = PlayerPrefs.GetInt("PlatformsRecord");
+        else
+            _platformsRecord = 0;
+
         Time.timeScale = 0;
     }
     private void OnBirdFly()
@@ -66,6 +82,7 @@ public class GameEventHandler : MonoBehaviour
     private void OnStartButtonClick()
     {
         _startScreen.Close();
+        _howToPlay.Open();
         _gameScreen.Open();
         OnBirdOnGround();
         Time.timeScale = 1;
@@ -82,12 +99,23 @@ public class GameEventHandler : MonoBehaviour
 
     private void OnScoreIncrease()
     {
-        _gameScreen.ShowScore(_bird.CoinCounter);
+        if(_bird.CoinCounter > 0)
+            _totalCoins++;
+        PlayerPrefs.SetInt("TotalCoins", _totalCoins);
+        _gameScreen.ShowScore(_bird.CoinCounter, _totalCoins);
     }
 
     private void OnPlatformCounterChanged()
-    {
-        _gameScreen.ShowPlatformsCounter(_bird.PlatformCounter);
+    {   
+        if (_bird.PlatformCounter > 0)
+            _howToPlay.Close();
+        
+        if (_bird.PlatformCounter > _platformsRecord)
+            _platformsRecord = _bird.PlatformCounter;
+
+        PlayerPrefs.SetInt("PlatformsRecord", _platformsRecord);
+
+        _gameScreen.ShowPlatformsCounter(_bird.PlatformCounter, _platformsRecord);
     }
 
     private void OnPlatformMoved()
