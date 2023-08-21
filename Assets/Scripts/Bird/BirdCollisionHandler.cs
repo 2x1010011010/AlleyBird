@@ -19,16 +19,21 @@ public class BirdCollisionHandler : MonoBehaviour
         {
             _bird.AddCoinCounter(coin.CoinPrice);
             _coinPool.DeactivateItem(coin.gameObject);
+            return;
         }
-        else if (collision.TryGetComponent(out Platform platform))
+        
+        if (collision.TryGetComponent(out Platform platform))
         {
             return;
         }
-        else if (collision.TryGetComponent(out PlatformCounterTrigger platformCounter))
+        
+        if (collision.TryGetComponent(out PlatformCounterTrigger platformCounter))
         {
             _bird.AddPlatformCounter();
+            return;
         }
-        else if (collision.TryGetComponent(out Wall wall))
+        
+        if (collision.TryGetComponent(out Wall wall))
         {
             _mover.ChangeDirection();
         }
