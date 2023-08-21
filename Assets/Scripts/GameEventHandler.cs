@@ -14,6 +14,12 @@ public class GameEventHandler : MonoBehaviour
     [SerializeField] private PlatformMover _platformMover;
     [SerializeField] private HowToPlayScreen _howToPlay;
 
+    [Header("Windows")] 
+    [SerializeField] private GameObject _startScreenObject;
+    [SerializeField] private GameObject _gameScreenObject;
+    [SerializeField] private GameObject _howToPlayObject;
+    [SerializeField] private GameObject _gameOverObject;
+
     private int _totalCoins;
     private int _platformsRecord;
 
@@ -43,10 +49,10 @@ public class GameEventHandler : MonoBehaviour
 
     private void Start()
     {
-        _howToPlay.Close();
-        _gameScreen.Close();
-        _gameoverScreen.Close();
-        _startScreen.Open();
+        _howToPlayObject.SetActive(false);
+        _gameScreenObject.SetActive(false);
+        _gameOverObject.SetActive(false);
+        _startScreenObject.SetActive(true);
         
         if (PlayerPrefs.HasKey("TotalCoins"))
             _totalCoins = PlayerPrefs.GetInt("TotalCoins");
@@ -62,28 +68,29 @@ public class GameEventHandler : MonoBehaviour
     }
     private void OnBirdFly()
     {
-        _animator.PlayAnimation("Flying");
+        _animator.Flight(true);
     }
     private void OnBirdOnGround()
     {
         if(Time.timeScale == 1) 
-            _animator.PlayAnimation("Walk");
+            _animator.Flight(false);
     }
 
     private void OnBirdDie()
     {
         _mover.ResetVelocity();
-        _animator.PlayAnimation("Die");
-        _gameScreen.Close();
-        _gameoverScreen.Open();
+        _animator.Dead(true);
+        _gameScreenObject.SetActive(false);
+        _gameOverObject.SetActive(true);
         Time.timeScale = 0;
     }
 
     private void OnStartButtonClick()
     {
-        _startScreen.Close();
-        _howToPlay.Open();
-        _gameScreen.Open();
+        _animator.Dead(false);
+        _startScreenObject.SetActive(false);
+        _howToPlayObject.SetActive(true);
+        _gameScreenObject.SetActive(true);
         OnBirdOnGround();
         Time.timeScale = 1;
     }
@@ -91,7 +98,7 @@ public class GameEventHandler : MonoBehaviour
     private void OnRestartButtonClick()
     {
         _bird.ResetCounters();
-        _gameoverScreen.Close();
+        _gameOverObject.SetActive(false);
         _catSpawner.ResetPool();
         _coinSpawner.ResetPool();
         OnStartButtonClick();
@@ -108,7 +115,7 @@ public class GameEventHandler : MonoBehaviour
     private void OnPlatformCounterChanged()
     {   
         if (_bird.PlatformCounter > 0)
-            _howToPlay.Close();
+            _howToPlayObject.SetActive(false);
         
         if (_bird.PlatformCounter > _platformsRecord)
             _platformsRecord = _bird.PlatformCounter;

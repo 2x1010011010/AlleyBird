@@ -251,10 +251,10 @@ RectTransform:
   m_Father: {fileID: 1662197145}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.038000003}
-  m_AnchorMin: {x: 0, y: 0.80518585}
-  m_AnchorMax: {x: 1, y: 0.9593717}
-  m_AnchoredPosition: {x: -0.9000244, y: -0.099975586}
-  m_SizeDelta: {x: -30.828552, y: 1.7315674}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -6, y: -180}
+  m_SizeDelta: {x: -100.023926, y: 297.73157}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &37718582
 CanvasGroup:
@@ -1415,6 +1415,10 @@ MonoBehaviour:
   _coinSpawner: {fileID: 1247590886}
   _platformMover: {fileID: 22960324}
   _howToPlay: {fileID: 632281070}
+  _startScreenObject: {fileID: 374194669}
+  _gameScreenObject: {fileID: 37718580}
+  _howToPlayObject: {fileID: 632281068}
+  _gameOverObject: {fileID: 645822744}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -1717,7 +1721,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 632281068}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -1777,7 +1781,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 645822744}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -1871,7 +1875,7 @@ GameObject:
   - component: {fileID: 948476050}
   - component: {fileID: 948476051}
   m_Layer: 0
-  m_Name: GameObject (1)
+  m_Name: Coins UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2075,7 +2079,7 @@ GameObject:
   - component: {fileID: 1049124518}
   - component: {fileID: 1049124519}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Platform UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
