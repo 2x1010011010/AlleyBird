@@ -1,18 +1,28 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
-using UnityEngine;
+using GameArchitecture.GameStateMachine.States;
 
-public class StateMachine : MonoBehaviour
+namespace GameArchitecture.GameStateMachine
 {
-    // Start is called before the first frame update
-    void Start()
+  public class StateMachine
+  {
+    private readonly Dictionary<Type, IState> _states;
+    private IState _currentState;
+
+    public StateMachine()
     {
-        
+      _states = new Dictionary<Type, IState>
+      {
+        [typeof(BootstrapState)] = new BootstrapState(this),
+      };
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Enter<TState>() where TState : IState
     {
-        
+      _currentState?.Exit();
+      var state = _states[typeof(TState)];
+      state.Enter();
+      _currentState = state;
     }
+  }
 }

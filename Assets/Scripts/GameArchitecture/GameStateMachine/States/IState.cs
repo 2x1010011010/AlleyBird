@@ -1,18 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class IState : MonoBehaviour
+namespace GameArchitecture.GameStateMachine.States
 {
-    // Start is called before the first frame update
-    void Start()
+    public interface IState
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        void Enter();
+        void Exit();
     }
 }

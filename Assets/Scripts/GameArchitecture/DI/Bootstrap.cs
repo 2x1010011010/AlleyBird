@@ -1,3 +1,4 @@
+using GameArchitecture.GameStateMachine.States;
 using UnityEngine;
 
 namespace GameArchitecture.DI
@@ -9,6 +10,8 @@ namespace GameArchitecture.DI
     private void Awake()
     {
       _game = new Game();
+      _game.StateMachine.Enter<BootstrapState>();
+      
       DontDestroyOnLoad(this);
     }
   }
