@@ -15,6 +15,7 @@ namespace GameArchitecture.GameStateMachine
       _states = new Dictionary<Type, IState>
       {
         [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader),
+        [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader),
       };
     }
 
@@ -26,4 +27,5 @@ namespace GameArchitecture.GameStateMachine
       _currentState = state;
     }
   }
+    
 }
