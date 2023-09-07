@@ -10,9 +10,9 @@ namespace GameArchitecture.DI
     public static IInput InputService;
     public StateMachine StateMachine;
 
-    public Game()
+    public Game(ICoroutineRunner coroutineRunner)
     {
-      StateMachine = new StateMachine();
+      StateMachine = new StateMachine(new SceneLoader(coroutineRunner));
     }
   }
 }
