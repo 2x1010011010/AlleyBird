@@ -15,9 +15,15 @@ namespace GameArchitecture.DI
     public void Load(string sceneName, Action onLoaded = null) =>
       _coroutineRunner.StartCoroutine(LoadScene(sceneName, onLoaded));
 
-    private IEnumerator LoadScene(string sceneName, Action onLoaded = null)
+    private IEnumerator LoadScene(string nextSceneName, Action onLoaded = null)
     {
-      AsyncOperation waitNexScene = SceneManager.LoadSceneAsync(sceneName);
+      if (SceneManager.GetActiveScene().name == nextSceneName)
+      {
+        onLoaded?.Invoke();
+        yield break;
+      }
+
+      AsyncOperation waitNexScene = SceneManager.LoadSceneAsync(nextSceneName);
 
       while (!waitNexScene.isDone)
         yield return null;
