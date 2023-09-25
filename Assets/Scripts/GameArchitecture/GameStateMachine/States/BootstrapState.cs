@@ -22,10 +22,8 @@ namespace GameArchitecture.GameStateMachine.States
       _sceneLoader.Load(InitialSceneName, EnterLoadMainScene);
     }
 
-    private void EnterLoadMainScene()
-    {
-      
-    }
+    private void EnterLoadMainScene() => 
+      _stateMachine.Enter<LoadLevelState>();
 
     public void Exit()
     {
