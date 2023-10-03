@@ -2,9 +2,8 @@ using GameArchitecture.DI;
 
 namespace GameArchitecture.GameStateMachine.States
 {
-  public class LoadLevelState : IState
+  public class LoadLevelState : IPayloadedState<string>
   {
-    private const string _mainSceneName = "MainScene";
     private readonly StateMachine _stateMachine;
     private readonly SceneLoader _sceneLoader;
 
@@ -14,10 +13,8 @@ namespace GameArchitecture.GameStateMachine.States
       _sceneLoader = sceneLoader;
     }
 
-    public void Enter()
-    {
-      _sceneLoader.Load(_mainSceneName);
-    }
+    public void Enter(string sceneName) =>
+        _sceneLoader.Load(sceneName);
 
     public void Exit()
     {

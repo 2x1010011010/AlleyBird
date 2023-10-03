@@ -23,7 +23,7 @@ namespace GameArchitecture.GameStateMachine.States
     }
 
     private void EnterLoadMainScene() => 
-      _stateMachine.Enter<LoadLevelState>();
+      _stateMachine.Enter<LoadLevelState, string>("MainScene");
 
     public void Exit()
     {
